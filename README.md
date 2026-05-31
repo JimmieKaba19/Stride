@@ -221,23 +221,3 @@ Check-in time [When to remind you]
 
 End date (milestone only) [Creates deadline urgency]
 ```
-
-## Monetisation
-
-Free gets you users. Paid gets you revenue. The freemium model works here because the free tier is genuinely useful, and the paid tier adds things people actually want, not features you've artificially locked.
-
-### Free tier, always free
-
-Unlimited goals (habit + milestone). Daily check-in and streak. Tonight's mission. Weekly review. 2 streak freezes per month. Shareable streak card at milestones. This is genuinely complete not crippled. Users trust you because the free tier respects them.
-
-## Stride Pro 3-5/month or $25-35/year
-
-Accountability partner pairing. Stride Circles (groups of 3-5). Unlimited streak freezes. Advanced analytics and patterns. Public profile URL. Priority streak recovery if a bug causes data loss. At $3/month this is an impulse buy, lower friction than Spotify.
-
-### Stride Teams, $20-50/month (future)
-
-For companies, bootcamps, cohort programmes. A facilitator creates a group, members join, everyone's goals and check-ins are visible to the group. Weekly review summaries go to the facilitator. Universities, accelerators, and online courses are the target. This is the B2B play that scales revenue.
-
-## Revenue projection, conservative
-
-100 free users - 10% convert to Pro at 4/month = 40usd/month. 1,000 free users - 400usd/month. 10,000 users- $4,000/month. The shareable streak card is your growth engine, every card shared brings new users at zero cost. One viral moment changes everything.
