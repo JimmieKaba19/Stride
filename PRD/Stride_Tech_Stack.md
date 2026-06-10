@@ -12,8 +12,6 @@
 
 one stack across all of them. You get faster with every project. No context switching. No relearning. Your stack becomes your superpower.
 
-
-
 ## The stack
 
 This stack is used by companies from solo founders to unicorns. It is learnable fast, deployable in minutes, free until you have real users, and scales to millions without changing anything fundamental.
@@ -38,8 +36,6 @@ Firebase is the other obvious choice and it's fine. But Supabase gives you a rea
 ## Why not Next.js over plain React + Vite?
 
 Next.js is excellent and worth learning but it adds server-side rendering complexity you don't need for V1. Start with React + Vite, which you already know. When you add SEO-important public pages like the public profile feature in V3, you can migrate the relevant parts to Next.js or add it as a layer. Don't learn a new framework while shipping your first product.
-
-
 
 ## Why each Choice
 
@@ -90,8 +86,6 @@ Stride needs to remind users to check in and write their daily mission. Resend i
 Don't add Stripe to V1. Add it when you're ready to charge which is after you have 50+ active users who love the free tier. Stripe is the industry standard, works in Kenya via Stripe Atlas if needed, and has the best documentation of any payment provider. 2.9% + $0.30 per transaction.
 
 **Set it up in V2 not before. Don't add payment complexity before you have users.**
-
-
 
 ## V1-V3 Journey
 

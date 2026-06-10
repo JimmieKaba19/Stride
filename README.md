@@ -1,56 +1,124 @@
 # **👣** Stride
 
-**Progress that moves with you**
+> **Progress that moves with you:** A goal-execution system for people who know what they want and need the structure, the streak, and the accountability to get there.
 
-Not a habit tracker. Not a to-do list. A goal-execution system for people who already know what they want, they just need the structure, the streak, and the social mirror to keep going.
+---
+
+## Stack
+
+| Layer         | Technology                   |
+| ------------- | ---------------------------- |
+| Frontend      | React 18 + Vite + TypeScript |
+| Styling       | Tailwind CSS v3              |
+| Backend/DB    | Supabase (PostgreSQL)        |
+| Auth          | Supabase Auth                |
+| State         | Zustand                      |
+| Server state  | TanStack Query               |
+| Hosting       | Vercel                       |
+| Notifications | Resend (V2)                  |
+| Payments      | Stripe (V2)                  |
+
+---
+
+## Project structure
+
+```
+src/
+├── components/
+│   ├── auth/          Login, Register forms
+│   ├── checkin/       Check-in modal + form
+│   ├── dashboard/     Dashboard widgets
+│   ├── goals/         Goal card, goal form, milestone list
+│   ├── layout/        AppLayout, sidebar
+│   ├── onboarding/    60-second onboarding flow
+│   ├── review/        Weekly review form
+│   ├── streak/        Streak heat map, flame, freeze UI
+│   └── ui/            Button, Input, Modal, Badge, Card, etc.
+├── constants/         Routes, categories, streak milestones
+├── hooks/             useAuth, useGoals, useCheckIn, ...
+├── lib/
+│   ├── api/           Supabase query functions per entity
+│   ├── supabase.ts    Supabase client
+│   └── queryClient.ts TanStack Query client
+├── pages/             One file per route
+├── store/             Zustand stores (auth, goals, ui)
+├── styles/            globals.css (Tailwind directives + design tokens)
+├── types/             TypeScript interfaces
+└── utils/             cn(), date helpers, formatters
+supabase/
+└── schema.sql         Full DB schema — run once in Supabase SQL editor
+```
+
+---
+
+## Build phases
+
+| Phase           | Scope                                                          | Timeline |
+| --------------- | -------------------------------------------------------------- | -------- |
+| V1 Personal MVP | Streaks, habit + milestone goals, daily mission, weekly review | June     |
+| V2 Social       | Accountability partners, Stride Circles, shareable cards       | July–Aug |
+| V3 Scale        | Public profiles, analytics, Teams (B2B)                        | Sept+    |
+
+---
+
+## Deployment (Vercel)
+
+1. Push to GitHub
+2. Connect repo in Vercel
+3. Add env vars: `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`
+4. Deploy done
+
+--- 
 
 ## Market gaps
 
-The research identified four consistent failure points across every major accountability app. These are your competitive advantages â€” build what they broke.
+The research identified four consistent failure points across every major accountability app. These are your competitive advantages build what they broke.
 
 ### What every competitor gets wrong
 
-#### Streak data loss, the unforgivable sin
+#### 1. Streak data loss, the unforgivable sin
 
 Coach.me users report 1,000+ day streaks randomly erased. `"For an accountability app built on streaks, losing streak data is unforgivable."` Habi review. Your streaks must be bulletproof, backed up, and recoverable.
 
-#### Gamification wears off after weeks
+#### 2. Gamification wears off after weeks
 
 Habitica's RPG mechanic is fun at first, then the novelty fades. The game becomes routine and stops driving behaviour. You need progression that deepens rather than repeats.
 
-#### Social accountability is either absent or expensive
+#### 3. Social accountability is either absent or expensive
 
 Apps either have no social layer at all, or charge $25-$249$/month for human coaching. The middle ground, lightweight, free peer accountability, is completely empty.
 
-#### Setup requires too much willpower to start
+#### 4. Setup requires too much willpower to start
 
 `"If the setup process itself requires willpower, the app has already failed."` Most apps overwhelm new users with configuration before they've done a single check-in. You should be accountable within 60 seconds of opening it.
 
-#### No goal-type awareness
+#### 5. No goal-type awareness
 
 Every app treats `"meditate daily"` and `"launch a product in 90 days"` the same way. They're not. One is a habit, one is a project milestone. The tracking, the streaks, and the check-in format should be different.
 
 ### How Stride fixes each one
 
-#### Streak data is sacred, cloud-synced, exportable, always yours
+#### 1. Streak data is sacred, cloud-synced, exportable, always yours
 
 Every streak backed up in real time. If a streak breaks due to a bug, it's restorable. Users can export their full history at any time. This alone differentiates you.
 
-#### Progression that evolves, not just points
+#### 2. Progression that evolves, not just points
 
 Streaks unlock new features, not just badges. A 30-day streak unlocks Accountability Circles. A 90-day streak unlocks your public profile card. The app reveals itself as you earn it.
 
-#### Free peer accountability, the missing middle
+#### 3. Free peer accountability, the missing middle
 
 Pair with one other user as an accountability partner. Share streaks. Get notified when they check in. Celebrate their wins. No coach needed, just a real person watching.
 
-#### 60-second onboarding, first check-in before you leave the page
+#### 4. 60-second onboarding, first check-in before you leave the page
 
 Name your goal. Set your daily check-in time. Check in once. Done. Everything else is optional and reveals gradually. No configuration walls.
 
-#### Two goal types, daily habits and milestone projects
+#### 5. Two goal types, daily habits and milestone projects
 
 Habit goals track streaks daily. Project goals track milestones, each one ticked moves a progress bar toward a deadline. Different UI, different check-in, same motivational engine.
+
+---
 
 ## Feature Set
 
@@ -167,6 +235,8 @@ A public URL `stride.app/yourname` showing your active goals, longest streaks, m
 Patterns shown visually, heat map, consistency graph, goal completion rate. Strides is the only app that shows you your own accountability patterns, not just your streaks.
 
 **Gap fixed: no competitor offers self-insight analytics**
+
+---
 
 ## Key Screens
 
