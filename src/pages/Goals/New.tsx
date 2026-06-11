@@ -98,7 +98,7 @@ export default function NewGoal() {
         longest_streak: 0,
         freeze_count: 2,
       });
-      toast.success("Goal created — let's build that streak 🔥");
+      toast.success("Goal created, let's build that streak 🔥");
       navigate(ROUTES.GOALS);
     } catch {
       toast.error("Something went wrong. Try again.");
@@ -125,7 +125,7 @@ export default function NewGoal() {
           <div className="mb-6">
             <h2 className="text-xl font-semibold mb-1">What kind of goal?</h2>
             <p className="text-surface-500 text-sm">
-              These track differently — pick the right one.
+              These track differently, pick the right one.
             </p>
           </div>
 
@@ -320,7 +320,7 @@ export default function NewGoal() {
             </p>
           </div>
 
-          {/* Target date — milestone only */}
+          {/* Target date, milestone only */}
           {form.type === "milestone" && (
             <div>
               <label className="label">
