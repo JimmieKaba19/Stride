@@ -5,6 +5,7 @@ import { useGoals } from "../hooks/useGoals";
 import { useAuthStore } from "../store/useAuthStore";
 import { useQuery } from "@tanstack/react-query";
 import { checkInsApi } from "../lib/api/checkins";
+import { missionsApi } from "../lib/api/missions";
 import { CheckInModal } from "../components/checkin/CheckInModal";
 import { ROUTES, GOAL_CATEGORIES } from "../constants";
 import { cn, formatDate } from "../utils";
@@ -17,7 +18,7 @@ const getGreeting = (name: string) => {
   return `${time}, ${name.split(" ")[0]}`;
 };
 
-// ─── Check-in button aware of today's status ────────────────────────────────
+// ─── Check-in button ──────────────────────────────────────────────────────────
 const GoalCheckInButton = ({ goal }: { goal: Goal }) => {
   const { profile } = useAuthStore();
   const [open, setOpen] = useState(false);
@@ -53,7 +54,6 @@ const GoalCheckInButton = ({ goal }: { goal: Goal }) => {
           </>
         )}
       </button>
-
       {open && <CheckInModal goal={goal} onClose={() => setOpen(false)} />}
     </>
   );
@@ -86,7 +86,6 @@ const GoalCard = ({ goal }: { goal: Goal }) => {
             {goal.title}
           </h3>
         </div>
-
         <div className="flex items-center gap-1 ml-3 shrink-0">
           <Flame
             size={17}
@@ -136,7 +135,6 @@ const GoalCard = ({ goal }: { goal: Goal }) => {
 const StatsBar = ({ goals }: { goals: Goal[] }) => {
   const totalStreak = goals.reduce((s, g) => s + g.current_streak, 0);
   const longestStreak = Math.max(0, ...goals.map((g) => g.longest_streak));
-
   return (
     <div className="grid grid-cols-3 gap-3">
       {[
@@ -150,6 +148,62 @@ const StatsBar = ({ goals }: { goals: Goal[] }) => {
           <div className="text-xs text-surface-400 mt-0.5">{s.label}</div>
         </div>
       ))}
+    </div>
+  );
+};
+
+// ─── Mission banner ───────────────────────────────────────────────────────────
+const MissionBanner = () => {
+  const navigate = useNavigate();
+  const { profile } = useAuthStore();
+
+  const { data: mission } = useQuery({
+    queryKey: ["mission-today", profile?.id],
+    enabled: !!profile?.id,
+    queryFn: () => missionsApi.today(profile!.id),
+  });
+
+  const hour = new Date().getHours();
+  const isMorning = hour < 12;
+
+  // Morning: show today's mission (written last night)
+  // Evening: prompt to write tonight's mission
+  return (
+    <div className="card p-5 border-l-4 border-brand-400">
+      <div className="flex items-center gap-2 mb-2">
+        <Zap size={15} className="text-brand-500" />
+        <span className="text-xs font-semibold text-brand-600 uppercase tracking-wide">
+          {isMorning ? "Today's mission" : "Tonight's mission"}
+        </span>
+      </div>
+
+      {mission ? (
+        <>
+          <p className="text-surface-800 text-sm font-medium leading-relaxed">
+            {mission.mission}
+          </p>
+          <button
+            className="text-xs text-surface-400 hover:text-brand-600 mt-3 transition-colors"
+            onClick={() => navigate(ROUTES.MISSION)}
+          >
+            {isMorning ? "Edit mission →" : "Update for tomorrow →"}
+          </button>
+        </>
+      ) : (
+        <>
+          <p className="text-surface-500 text-sm italic">
+            {isMorning
+              ? "No mission set, write one tonight before you stop for the day."
+              : "What is your mission for tomorrow? One sentence before you sleep."}
+          </p>
+          <button
+            className="text-xs text-brand-600 font-medium mt-3 hover:text-brand-700"
+            onClick={() => navigate(ROUTES.MISSION)}
+          >
+            Set tonight's mission →
+          </button>
+        </>
+      )}
     </div>
   );
 };
@@ -186,24 +240,8 @@ export default function Dashboard() {
       {/* Stats */}
       {activeGoals.length > 0 && <StatsBar goals={activeGoals} />}
 
-      {/* Today's mission */}
-      <div className="card p-5 border-l-4 border-brand-400">
-        <div className="flex items-center gap-2 mb-2">
-          <Zap size={15} className="text-brand-500" />
-          <span className="text-xs font-semibold text-brand-600 uppercase tracking-wide">
-            Today's mission
-          </span>
-        </div>
-        <p className="text-surface-500 text-sm italic">
-          No mission set yet, write tonight's mission before you sleep.
-        </p>
-        <button
-          className="text-xs text-brand-600 font-medium mt-3 hover:text-brand-700"
-          onClick={() => navigate(ROUTES.MISSION)}
-        >
-          Set tonight's mission →
-        </button>
-      </div>
+      {/* Mission */}
+      <MissionBanner />
 
       {/* Goals */}
       <div>

@@ -58,9 +58,9 @@ export const PRO_FREEZES_PER_MONTH  = 10
 
 // ─── Weekly review questions ──────────────────────────────────────────────────
 export const REVIEW_QUESTIONS = [
-  { key: 'what_done',         prompt: 'What did you accomplish this week?',       placeholder: 'Be honest — big and small wins count.' },
+  { key: 'what_done',         prompt: 'What did you accomplish this week?',       placeholder: 'Be honest: big and small wins count.' },
   { key: 'what_skipped',      prompt: 'What did you skip or avoid?',              placeholder: 'No judgment. Just awareness.' },
-  { key: 'what_blocked',      prompt: 'What got in the way?',                     placeholder: 'Internal or external — name it.' },
+  { key: 'what_blocked',      prompt: 'What got in the way?',                     placeholder: 'Internal or external: name it.' },
   { key: 'what_learned',      prompt: 'What did you learn about yourself?',       placeholder: 'One sentence is enough.' },
   { key: 'next_week_mission', prompt: "What's your mission for next week?",       placeholder: 'One sentence. Make it count.' },
 ] as const
